@@ -1,0 +1,564 @@
+{
+  "name": "a050-MapperConditional",
+  "version": 2,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "018079e5",
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> every 1000000 hours",
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+      "time_unit": "Hours"
+    },
+    "input": {
+      "time_unit": "hours",
+      "trigger_every": "1000000"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "hours"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.account_timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "workato_mapper",
+        "name": "map",
+        "as": "34b10c97",
+        "title": null,
+        "description": "<span class=\"provider\">Map</span> to <span class=\"provider\"><span class=\"provider\">Employee</span></span>",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+          "workato_schema_id": "Employee"
+        },
+        "toggleCfg": {
+          "data.Employee.trainee": true
+        },
+        "input": {
+          "workato_schema_id": {
+            "zip_name": "employee.workato_schema.json",
+            "name": "Employee",
+            "folder": ""
+          },
+          "data": {
+            "Employee": {
+              "id": "100",
+              "full_name": "First Middle Last",
+              "trainee": "false",
+              "DOJ": "2015-01-01"
+            }
+          }
+        },
+        "extended_output_schema": [
+          {
+            "label": "Employee",
+            "name": "data",
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "number",
+                    "label": "ID",
+                    "parse_output": "float_conversion",
+                    "type": "number",
+                    "name": "id",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Full name",
+                    "type": "string",
+                    "name": "full_name",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "checkbox",
+                    "label": "Trainee",
+                    "render_input": {
+                    },
+                    "parse_output": {
+                    },
+                    "toggle_hint": "Select from option list",
+                    "toggle_field": {
+                      "label": "Trainee",
+                      "control_type": "text",
+                      "toggle_hint": "Use custom value",
+                      "type": "boolean",
+                      "name": "trainee"
+                    },
+                    "type": "boolean",
+                    "name": "trainee",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "date",
+                    "label": "DOJ",
+                    "render_input": "date_conversion",
+                    "parse_output": "date_conversion",
+                    "type": "date_time",
+                    "name": "DOJ",
+                    "optional": true
+                  }
+                ],
+                "label": "Employee",
+                "type": "object",
+                "name": "Employee",
+                "optional": true
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "label": "Employee",
+            "name": "data",
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "number",
+                    "label": "ID",
+                    "parse_output": "float_conversion",
+                    "type": "number",
+                    "name": "id",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Full name",
+                    "type": "string",
+                    "name": "full_name",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "checkbox",
+                    "label": "Trainee",
+                    "render_input": {
+                    },
+                    "parse_output": {
+                    },
+                    "toggle_hint": "Select from option list",
+                    "toggle_field": {
+                      "label": "Trainee",
+                      "control_type": "text",
+                      "toggle_hint": "Use custom value",
+                      "type": "boolean",
+                      "name": "trainee"
+                    },
+                    "type": "boolean",
+                    "name": "trainee",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "date",
+                    "label": "DOJ",
+                    "render_input": "date_conversion",
+                    "parse_output": "date_conversion",
+                    "type": "date_time",
+                    "name": "DOJ",
+                    "optional": true
+                  }
+                ],
+                "label": "Employee",
+                "type": "object",
+                "name": "Employee",
+                "optional": true
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "uuid": "b8533f38-bb84-40ca-9293-c07f0a2f110b"
+      },
+      {
+        "number": 2,
+        "provider": "workato_mapper",
+        "name": "map",
+        "as": "765d7783",
+        "title": null,
+        "description": "<span class=\"provider\">Map</span> to <span class=\"provider\"><span class=\"provider\">Payroll</span></span>",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+          "workato_schema_id": "Payroll"
+        },
+        "input": {
+          "workato_schema_id": {
+            "zip_name": "payroll.workato_schema.json",
+            "name": "Payroll",
+            "folder": ""
+          },
+          "data": {
+            "Payroll": {
+              "id": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"34b10c97\",\"path\":[\"data\",\"Employee\",\"id\"]}')}",
+              "Name": {
+                "first": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"34b10c97\",\"path\":[\"data\",\"Employee\",\"full_name\"]}').split(\" \")[0]",
+                "middle": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"34b10c97\",\"path\":[\"data\",\"Employee\",\"full_name\"]}').split(\" \")[1]",
+                "last": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"34b10c97\",\"path\":[\"data\",\"Employee\",\"full_name\"]}').split(\" \")[2]"
+              },
+              "DOJ": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"34b10c97\",\"path\":[\"data\",\"Employee\",\"DOJ\"]}')}",
+              "grade": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"34b10c97\",\"path\":[\"data\",\"Employee\",\"DOJ\"]}').to_s.slice(0,4).to_i <= 2010 ? \"A\" : _dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"34b10c97\",\"path\":[\"data\",\"Employee\",\"DOJ\"]}').to_s.slice(0,4).to_i <= 2020 ? \"B\" : \"C\""
+            }
+          }
+        },
+        "extended_output_schema": [
+          {
+            "label": "Payroll",
+            "name": "data",
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "number",
+                    "label": "ID",
+                    "parse_output": "float_conversion",
+                    "type": "number",
+                    "name": "id",
+                    "optional": true
+                  },
+                  {
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "First",
+                        "type": "string",
+                        "name": "first",
+                        "optional": true
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Middle",
+                        "type": "string",
+                        "name": "middle",
+                        "optional": true
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Last",
+                        "type": "string",
+                        "name": "last",
+                        "optional": true
+                      }
+                    ],
+                    "label": "Name",
+                    "type": "object",
+                    "name": "Name",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "date",
+                    "label": "DOJ",
+                    "render_input": "date_conversion",
+                    "parse_output": "date_conversion",
+                    "type": "date_time",
+                    "name": "DOJ",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Grade",
+                    "type": "string",
+                    "name": "grade",
+                    "optional": true
+                  }
+                ],
+                "label": "Payroll",
+                "type": "object",
+                "name": "Payroll",
+                "optional": true
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "label": "Payroll",
+            "name": "data",
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "number",
+                    "label": "ID",
+                    "parse_output": "float_conversion",
+                    "type": "number",
+                    "name": "id",
+                    "optional": true
+                  },
+                  {
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "First",
+                        "type": "string",
+                        "name": "first",
+                        "optional": true
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Middle",
+                        "type": "string",
+                        "name": "middle",
+                        "optional": true
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Last",
+                        "type": "string",
+                        "name": "last",
+                        "optional": true
+                      }
+                    ],
+                    "label": "Name",
+                    "type": "object",
+                    "name": "Name",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "date",
+                    "label": "DOJ",
+                    "render_input": "date_conversion",
+                    "parse_output": "date_conversion",
+                    "type": "date_time",
+                    "name": "DOJ",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Grade",
+                    "type": "string",
+                    "name": "grade",
+                    "optional": true
+                  }
+                ],
+                "label": "Payroll",
+                "type": "object",
+                "name": "Payroll",
+                "optional": true
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "visible_config_fields": [
+          "workato_schema_id",
+          "data",
+          "data.Payroll",
+          "data.Payroll.id",
+          "data.Payroll.Name",
+          "data.Payroll.Name.first",
+          "data.Payroll.Name.middle",
+          "data.Payroll.Name.last",
+          "data.Payroll.DOJ",
+          "data.Payroll.grade"
+        ],
+        "uuid": "79ddb98f-25f8-45f9-99c6-0334add20057"
+      },
+      {
+        "number": 3,
+        "keyword": "if",
+        "input": {
+          "type": "compound",
+          "operand": "and",
+          "conditions": [
+            {
+              "operand": "equals_to",
+              "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"765d7783\",\"path\":[\"data\",\"Payroll\",\"grade\"]}')}",
+              "rhs": "A",
+              "uuid": "b15c64bd-01a1-4ec0-af7c-22a740bed427"
+            }
+          ]
+        },
+        "block": [
+          {
+            "number": 4,
+            "provider": "workato_recipe_function",
+            "name": "call_recipe",
+            "as": "86785429",
+            "title": null,
+            "description": "Call <span class=\"provider\">a999-LoggerSubProcess</span>",
+            "keyword": "action",
+            "dynamicPickListSelection": {
+              "flow_id": "a999-LoggerSubProcess"
+            },
+            "input": {
+              "flow_id": {
+                "zip_name": "a999_loggersubprocess.recipe.json",
+                "name": "a999-LoggerSubProcess",
+                "folder": ""
+              },
+              "parameters": {
+                "Logger": {
+                  "msg": "=_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"765d7783\",\"path\":[\"data\",\"Payroll\"]}').to_xml(root: \"Payroll\")",
+                  "currentDtTm": "=now"
+                }
+              }
+            },
+            "extended_input_schema": [
+              {
+                "label": "Parameters",
+                "name": "parameters",
+                "properties": [
+                  {
+                    "properties": [
+                      {
+                        "control_type": "text",
+                        "label": "msg",
+                        "name": "msg",
+                        "type": "string",
+                        "optional": true
+                      },
+                      {
+                        "control_type": "date_time",
+                        "label": "currentDtTm",
+                        "render_input": "date_time_conversion",
+                        "parse_output": "date_time_conversion",
+                        "name": "currentDtTm",
+                        "type": "date_time",
+                        "optional": true
+                      }
+                    ],
+                    "label": "Logger",
+                    "name": "Logger",
+                    "type": "object",
+                    "optional": false
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "visible_config_fields": [
+              "flow_id",
+              "parameters.Logger.msg",
+              "parameters.Logger.currentDtTm"
+            ],
+            "uuid": "f39f74f2-7444-4352-b731-323d94154f2d"
+          },
+          {
+            "number": 5,
+            "keyword": "elsif",
+            "input": {
+              "type": "compound",
+              "operand": "and",
+              "conditions": [
+                {
+                  "operand": "equals_to",
+                  "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"765d7783\",\"path\":[\"data\",\"Payroll\",\"grade\"]}')}",
+                  "rhs": "B",
+                  "uuid": "c40f8afd-9b7d-43bf-8ae2-d0daf8fcb373"
+                }
+              ]
+            },
+            "block": [
+              {
+                "number": 6,
+                "provider": "logger",
+                "name": "log_message",
+                "as": "41e515c2",
+                "title": null,
+                "description": "Log <span class=\"provider\">message</span> to <span class=\"provider\">Job report</span>",
+                "keyword": "action",
+                "input": {
+                  "message": "Employee grade is #{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_mapper\",\"line\":\"765d7783\",\"path\":[\"data\",\"Payroll\",\"grade\"]}')}"
+                },
+                "uuid": "b3c31b73-1bdd-410b-b722-2c5d17aa4ee2"
+              }
+            ],
+            "uuid": "b9301983-65a6-4ca5-98f9-8df0ebe2bfd9"
+          },
+          {
+            "number": 7,
+            "keyword": "else",
+            "input": {
+            },
+            "block": [
+              {
+                "number": 8,
+                "provider": "logger",
+                "name": "log_message",
+                "as": "e5c109aa",
+                "title": null,
+                "description": "Log <span class=\"provider\">message</span> to <span class=\"provider\">Job report</span>",
+                "keyword": "action",
+                "input": {
+                  "message": "Grade is C"
+                },
+                "uuid": "8032e271-ad68-4cdf-bf73-4bbd41bec520"
+              }
+            ],
+            "uuid": "16b8bb47-3323-4f9b-af4d-4ec9afc81ff7"
+          }
+        ],
+        "uuid": "47bace3b-5d84-4563-ba26-adccee1be792"
+      }
+    ],
+    "uuid": "dc3ed018-0641-4d26-b6c0-6a88554feac0",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "workato_mapper",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "workato_recipe_function",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "logger",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}

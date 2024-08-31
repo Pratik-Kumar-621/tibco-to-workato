@@ -1,0 +1,56 @@
+{
+  "name": "Employee",
+  "schema": [
+    {
+      "properties": [
+        {
+          "control_type": "number",
+          "label": "ID",
+          "parse_output": "float_conversion",
+          "type": "number",
+          "name": "id",
+          "optional": true
+        },
+        {
+          "control_type": "text",
+          "label": "Full name",
+          "type": "string",
+          "name": "full_name",
+          "optional": true
+        },
+        {
+          "control_type": "checkbox",
+          "label": "Trainee",
+          "render_input": {
+          },
+          "parse_output": {
+          },
+          "toggle_hint": "Select from option list",
+          "toggle_field": {
+            "label": "Trainee",
+            "control_type": "text",
+            "toggle_hint": "Use custom value",
+            "type": "boolean",
+            "name": "trainee"
+          },
+          "type": "boolean",
+          "name": "trainee",
+          "optional": true
+        },
+        {
+          "control_type": "date",
+          "label": "DOJ",
+          "render_input": "date_conversion",
+          "parse_output": "date_conversion",
+          "type": "date_time",
+          "name": "DOJ",
+          "optional": true
+        }
+      ],
+      "label": "Employee",
+      "type": "object",
+      "name": "Employee",
+      "optional": true
+    }
+  ]
+}

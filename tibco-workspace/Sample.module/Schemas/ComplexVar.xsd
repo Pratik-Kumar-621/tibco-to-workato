@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/ComplexVar" xmlns:tns="http://www.example.org/ComplexVar" elementFormDefault="qualified">
+
+  <xsd:element name="ComplexVar">
+        
+    <xsd:complexType>
+            
+      <xsd:sequence>
+                
+        <xsd:element maxOccurs="1" minOccurs="0" name="str" type="xsd:string" default="migration"/>
+                
+        <xsd:element maxOccurs="1" minOccurs="0" name="number" type="xsd:integer"/>
+                
+        <xsd:element maxOccurs="1" minOccurs="0" name="flag" type="xsd:boolean" default="true"/>
+        
+        <xsd:element maxOccurs="1" minOccurs="0" name="currentDtTm" type="xsd:dateTime"/>
+              
+      </xsd:sequence>
+          
+    </xsd:complexType>
+      
+  </xsd:element>
+  
+</xsd:schema>

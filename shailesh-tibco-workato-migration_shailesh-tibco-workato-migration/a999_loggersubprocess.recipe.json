@@ -1,0 +1,82 @@
+{
+  "name": "a999-LoggerSubProcess",
+  "version": 1,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "workato_recipe_function",
+    "name": "execute",
+    "as": "fc62e0fb",
+    "title": null,
+    "description": null,
+    "keyword": "trigger",
+    "input": {
+      "parameters_schema_json": "[{\"properties\":[{\"control_type\":\"text\",\"label\":\"msg\",\"name\":\"msg\",\"type\":\"string\",\"optional\":true},{\"control_type\":\"date_time\",\"label\":\"currentDtTm\",\"render_input\":\"date_time_conversion\",\"parse_output\":\"date_time_conversion\",\"name\":\"currentDtTm\",\"type\":\"date_time\",\"optional\":true}],\"label\":\"Logger\",\"name\":\"Logger\",\"type\":\"object\",\"optional\":false}]"
+    },
+    "extended_output_schema": [
+      {
+        "label": "Parameters",
+        "name": "parameters",
+        "properties": [
+          {
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "msg",
+                "name": "msg",
+                "type": "string",
+                "optional": true
+              },
+              {
+                "control_type": "date_time",
+                "label": "currentDtTm",
+                "render_input": "date_time_conversion",
+                "parse_output": "date_time_conversion",
+                "name": "currentDtTm",
+                "type": "date_time",
+                "optional": true
+              }
+            ],
+            "label": "Logger",
+            "name": "Logger",
+            "type": "object",
+            "optional": false
+          }
+        ],
+        "type": "object"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "logger",
+        "name": "log_message",
+        "as": "4fa13615",
+        "title": null,
+        "description": "Log <span class=\"provider\">message</span> to <span class=\"provider\">Job report</span>",
+        "keyword": "action",
+        "input": {
+          "message": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_recipe_function\",\"line\":\"fc62e0fb\",\"path\":[\"parameters\",\"Logger\",\"currentDtTm\"]}')} - #{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_recipe_function\",\"line\":\"fc62e0fb\",\"path\":[\"parameters\",\"Logger\",\"msg\"]}')}"
+        },
+        "uuid": "0abe4b57-949e-42b9-b2e1-694470e10b8a"
+      }
+    ],
+    "uuid": "453b2ec8-a02e-427b-9b1b-adb917752d3b",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "workato_recipe_function",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "logger",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_l_stYGK4Ee-qMapJle1rFA" targetNamespace="http://tns.tibco.com/bw/composite/Sample.module" name="Sample.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:property xmi:id="_n4rBMGK4Ee-qMapJle1rFA" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_n5BmgGK4Ee-qMapJle1rFA" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_n5HtIGK4Ee-qMapJle1rFA" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_n5ReIGK4Ee-qMapJle1rFA" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_n5bPIGK4Ee-qMapJle1rFA" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_n5bPIWK4Ee-qMapJle1rFA" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_n5lAIGK4Ee-qMapJle1rFA" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_n5uKEGK4Ee-qMapJle1rFA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_n5uKEWK4Ee-qMapJle1rFA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_SI-i8GUbEe-Of9-OwBolMA" name="language" type="XMLSchema:string" publicAccess="true" scalable="true"/>
+  <sca:component xmi:id="_ZhCZsGQrEe-LiPukp7B5xg" name="Componenta010-SingleVariable" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_ZhCZsWQrEe-LiPukp7B5xg" processName="sample.module.a010-SingleVariable"/>
+  </sca:component>
+  <sca:component xmi:id="_-pvDQGQuEe-LiPukp7B5xg" name="Componenta000-HelloWorld" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_-pvDQWQuEe-LiPukp7B5xg" processName="sample.module.a000-HelloWorld"/>
+  </sca:component>
+  <sca:component xmi:id="_8aL3IGRdEe-2fdY7cVKW6w" name="Componenta015-MultiVariableMultiLog" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_8aL3IWRdEe-2fdY7cVKW6w" processName="sample.module.a015-MultiVariableMultiLog"/>
+  </sca:component>
+  <sca:component xmi:id="_U5t2MGRgEe-2fdY7cVKW6w" name="Componenta030-AssignVarValues" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_U5t2MWRgEe-2fdY7cVKW6w" processName="sample.module.a030-AssignVarValues"/>
+  </sca:component>
+  <sca:component xmi:id="_wJyJkGRqEe-y6P5sDkxv1A" name="Componenta040-InvokeSubProcess" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_wJyJkWRqEe-y6P5sDkxv1A" processName="sample.module.a040-InvokeSubProcess"/>
+  </sca:component>
+  <sca:component xmi:id="_cKXUIGRyEe-R3sDoAr7MvA" name="Component050-Mapper" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_cKXUIWRyEe-R3sDoAr7MvA" processName="sample.module.a050-MapperConditional"/>
+  </sca:component>
+  <sca:component xmi:id="_CLtrQGTqEe-ZxOnvZTlZ7Q" name="Componenta060-Loop" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_CLtrQWTqEe-ZxOnvZTlZ7Q" processName="sample.module.a060-Loop"/>
+  </sca:component>
+  <sca:component xmi:id="_fRdcIGUbEe-Of9-OwBolMA" name="Componenta020-GlobalVariable" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_fRdcIWUbEe-Of9-OwBolMA" processName="sample.module.a020-GlobalVariable"/>
+  </sca:component>
+</sca:composite>

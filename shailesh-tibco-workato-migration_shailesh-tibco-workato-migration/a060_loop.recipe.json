@@ -1,0 +1,415 @@
+{
+  "name": "a060-Loop",
+  "version": 4,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "48827d35",
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> every 1000000 hours",
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+      "time_unit": "Hours"
+    },
+    "input": {
+      "time_unit": "hours",
+      "trigger_every": "1000000"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "hours"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.account_timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "workato_variable",
+        "name": "declare_list",
+        "as": "90bd67ed",
+        "title": " Create Employees list",
+        "description": "Create <span class=\"provider\">Employees</span> list",
+        "keyword": "action",
+        "input": {
+          "name": "Employees",
+          "list_item_schema_json": "[{\"properties\":[{\"control_type\":\"number\",\"label\":\"ID\",\"type\":\"number\",\"name\":\"id\",\"optional\":true,\"parse_output\":\"float_conversion\"},{\"control_type\":\"text\",\"label\":\"Full name\",\"type\":\"string\",\"name\":\"full_name\",\"optional\":true},{\"label\":\"Trainee\",\"toggle_hint\":\"Select from option list\",\"toggle_field\":{\"label\":\"Trainee\",\"control_type\":\"text\",\"toggle_hint\":\"Use custom value\",\"type\":\"boolean\",\"name\":\"trainee\"},\"type\":\"boolean\",\"name\":\"trainee\",\"optional\":true,\"control_type\":\"checkbox\",\"render_input\":{},\"parse_output\":{}},{\"control_type\":\"date\",\"label\":\"DOJ\",\"type\":\"date_time\",\"name\":\"DOJ\",\"optional\":true,\"render_input\":\"date_conversion\",\"parse_output\":\"date_conversion\"}],\"label\":\"Employee\",\"type\":\"object\",\"name\":\"Employee\",\"optional\":true}]"
+        },
+        "extended_output_schema": [
+          {
+            "hint": "",
+            "label": "Employees",
+            "name": "list_items",
+            "of": "object",
+            "optional": false,
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "number",
+                    "label": "ID",
+                    "parse_output": "float_conversion",
+                    "type": "number",
+                    "name": "id",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Full name",
+                    "type": "string",
+                    "name": "full_name",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "checkbox",
+                    "label": "Trainee",
+                    "render_input": {
+                    },
+                    "parse_output": {
+                    },
+                    "toggle_hint": "Select from option list",
+                    "toggle_field": {
+                      "label": "Trainee",
+                      "control_type": "text",
+                      "toggle_hint": "Use custom value",
+                      "type": "boolean",
+                      "name": "trainee"
+                    },
+                    "type": "boolean",
+                    "name": "trainee",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "date",
+                    "label": "DOJ",
+                    "render_input": "date_conversion",
+                    "parse_output": "date_conversion",
+                    "type": "date_time",
+                    "name": "DOJ",
+                    "optional": true
+                  }
+                ],
+                "label": "Employee",
+                "type": "object",
+                "name": "Employee",
+                "optional": true
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "hint": "Set the initial items in the list. Defaults to an empty list if not supplied.",
+            "label": "Items",
+            "name": "list_items",
+            "of": "object",
+            "optional": true,
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "number",
+                    "label": "ID",
+                    "parse_output": "float_conversion",
+                    "type": "number",
+                    "name": "id",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "text",
+                    "label": "Full name",
+                    "type": "string",
+                    "name": "full_name",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "checkbox",
+                    "label": "Trainee",
+                    "render_input": {
+                    },
+                    "parse_output": {
+                    },
+                    "toggle_hint": "Select from option list",
+                    "toggle_field": {
+                      "label": "Trainee",
+                      "control_type": "text",
+                      "toggle_hint": "Use custom value",
+                      "type": "boolean",
+                      "name": "trainee"
+                    },
+                    "type": "boolean",
+                    "name": "trainee",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "date",
+                    "label": "DOJ",
+                    "render_input": "date_conversion",
+                    "parse_output": "date_conversion",
+                    "type": "date_time",
+                    "name": "DOJ",
+                    "optional": true
+                  }
+                ],
+                "label": "Employee",
+                "type": "object",
+                "name": "Employee",
+                "optional": true
+              }
+            ],
+            "type": "array"
+          }
+        ],
+        "uuid": "0200360e-8c5b-49ac-9d83-0a31a1e12a5b"
+      },
+      {
+        "number": 2,
+        "as": "a2208b50",
+        "keyword": "repeat",
+        "block": [
+          {
+            "number": 3,
+            "provider": "workato_variable",
+            "name": "insert_to_list",
+            "as": "42a07edc",
+            "title": "Add items to Employees list",
+            "description": "Add <span class=\"provider\">items</span> to <span class=\"provider\">Employees</span> list",
+            "keyword": "action",
+            "dynamicPickListSelection": {
+              "name": "Employees (step 2)"
+            },
+            "toggleCfg": {
+              "list_item.Employee.trainee": true
+            },
+            "input": {
+              "location": "end",
+              "name": "0200360e-8c5b-49ac-9d83-0a31a1e12a5b:90bd67ed",
+              "list_item": {
+                "Employee": {
+                  "full_name": "=\"\"+(_dp('{\"pill_type\":\"output\",\"provider\":\"repeat\",\"line\":\"a2208b50\",\"path\":[\"index\"]}')+1)+\" \"+(_dp('{\"pill_type\":\"output\",\"provider\":\"repeat\",\"line\":\"a2208b50\",\"path\":[\"index\"]}')+2)+\" \"+(_dp('{\"pill_type\":\"output\",\"provider\":\"repeat\",\"line\":\"a2208b50\",\"path\":[\"index\"]}')+3)",
+                  "id": "=(_dp('{\"pill_type\":\"output\",\"provider\":\"repeat\",\"line\":\"a2208b50\",\"path\":[\"index\"]}')+1) * 100",
+                  "trainee": "false",
+                  "DOJ": "2015-08-28"
+                }
+              }
+            },
+            "extended_input_schema": [
+              {
+                "hint": "",
+                "label": "List item",
+                "name": "list_item",
+                "optional": false,
+                "properties": [
+                  {
+                    "properties": [
+                      {
+                        "control_type": "number",
+                        "label": "ID",
+                        "parse_output": "float_conversion",
+                        "type": "number",
+                        "name": "id",
+                        "optional": true
+                      },
+                      {
+                        "control_type": "text",
+                        "label": "Full name",
+                        "type": "string",
+                        "name": "full_name",
+                        "optional": true
+                      },
+                      {
+                        "control_type": "checkbox",
+                        "label": "Trainee",
+                        "render_input": {
+                        },
+                        "parse_output": {
+                        },
+                        "toggle_hint": "Select from option list",
+                        "toggle_field": {
+                          "label": "Trainee",
+                          "control_type": "text",
+                          "toggle_hint": "Use custom value",
+                          "type": "boolean",
+                          "name": "trainee"
+                        },
+                        "type": "boolean",
+                        "name": "trainee",
+                        "optional": true
+                      },
+                      {
+                        "control_type": "date",
+                        "label": "DOJ",
+                        "render_input": "date_conversion",
+                        "parse_output": "date_conversion",
+                        "type": "date_time",
+                        "name": "DOJ",
+                        "optional": true
+                      }
+                    ],
+                    "label": "Employee",
+                    "type": "object",
+                    "name": "Employee",
+                    "optional": true
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "visible_config_fields": [
+              "name",
+              "location",
+              "list_item.Employee.id",
+              "list_item.Employee.full_name",
+              "list_item.Employee.trainee",
+              "list_item.Employee.DOJ"
+            ],
+            "uuid": "8345d997-863a-47ef-983f-4ace97c4d25f"
+          },
+          {
+            "number": 4,
+            "keyword": "while_condition",
+            "input": {
+              "type": "compound",
+              "operand": "and",
+              "conditions": [
+                {
+                  "operand": "less_than",
+                  "lhs": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"repeat\",\"line\":\"a2208b50\",\"path\":[\"index\"]}')}",
+                  "rhs": "2",
+                  "uuid": "321dddf8-de58-40bc-8bb0-e9b5559fb708"
+                }
+              ]
+            },
+            "uuid": "80fcd4e7-685d-4250-88bc-cf97a9291ac5"
+          }
+        ],
+        "uuid": "2784a10f-de0a-4eb9-a109-c4af22c28970"
+      },
+      {
+        "number": 5,
+        "as": "27734c4d",
+        "keyword": "foreach",
+        "repeat_mode": "simple",
+        "clear_scope": "false",
+        "input": {
+        },
+        "block": [
+          {
+            "number": 6,
+            "provider": "logger",
+            "name": "log_message",
+            "as": "eab6dfb7",
+            "title": null,
+            "description": "Log <span class=\"provider\">message</span> to <span class=\"provider\">Job report</span> <span class=\"provider\">and Workato Logs</span>",
+            "keyword": "action",
+            "input": {
+              "message": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"foreach\",\"line\":\"27734c4d\",\"path\":[\"Employee\",\"full_name\"]}')}",
+              "user_logs_enabled": true,
+              "log_level": "INFO"
+            },
+            "extended_input_schema": [
+              {
+                "control_type": "select",
+                "default": "INFO",
+                "disable_formula": true,
+                "hint": "Flag your message with a log level to easily find the right entry in the Workato logs.",
+                "label": "Log level",
+                "name": "log_level",
+                "ngIf": "input.user_logs_enabled == true",
+                "optional": false,
+                "pick_list": [
+                  [
+                    "INFO",
+                    "INFO"
+                  ],
+                  [
+                    "WARN",
+                    "WARN"
+                  ],
+                  [
+                    "ERROR",
+                    "ERROR"
+                  ]
+                ],
+                "type": "string"
+              },
+              {
+                "control_type": "switch",
+                "default": false,
+                "disable_formula": true,
+                "extends_schema": true,
+                "hint": "                Send a copy of the message to Workato logs.\n                <a href=\"https://docs.workato.com/features/logging-service.html\" target=\"_blank\" class=\"ng-scope\">\n                  Learn more\n                </a>\n",
+                "label": "Send to Workato log service",
+                "name": "user_logs_enabled",
+                "optional": true,
+                "type": "string"
+              }
+            ],
+            "uuid": "e7f80f7d-fe06-4778-a941-b6fa5999782f"
+          }
+        ],
+        "source": "#{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"90bd67ed\",\"path\":[\"list_items\"]}')}",
+        "uuid": "75a196dc-e4df-4fd1-8a8c-3ce4afe620b8"
+      }
+    ],
+    "uuid": "62f9a014-6de1-4b00-975c-a03581e7ce0d",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "workato_variable",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "logger",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}

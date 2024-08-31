@@ -1,0 +1,66 @@
+{
+  "name": "Payroll",
+  "schema": [
+    {
+      "properties": [
+        {
+          "control_type": "number",
+          "label": "ID",
+          "parse_output": "float_conversion",
+          "type": "number",
+          "name": "id",
+          "optional": true
+        },
+        {
+          "properties": [
+            {
+              "control_type": "text",
+              "label": "First",
+              "type": "string",
+              "name": "first",
+              "optional": true
+            },
+            {
+              "control_type": "text",
+              "label": "Middle",
+              "type": "string",
+              "name": "middle",
+              "optional": true
+            },
+            {
+              "control_type": "text",
+              "label": "Last",
+              "type": "string",
+              "name": "last",
+              "optional": true
+            }
+          ],
+          "label": "Name",
+          "type": "object",
+          "name": "Name",
+          "optional": true
+        },
+        {
+          "control_type": "date",
+          "label": "DOJ",
+          "render_input": "date_conversion",
+          "parse_output": "date_conversion",
+          "type": "date_time",
+          "name": "DOJ",
+          "optional": true
+        },
+        {
+          "control_type": "text",
+          "label": "Grade",
+          "type": "string",
+          "name": "grade",
+          "optional": true
+        }
+      ],
+      "label": "Payroll",
+      "type": "object",
+      "name": "Payroll",
+      "optional": true
+    }
+  ]
+}

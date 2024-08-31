@@ -1,0 +1,144 @@
+{
+  "name": "a040-InvokeSubProcess",
+  "version": 1,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "f4cd532c",
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> every 1000000 hours",
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+      "time_unit": "Hours"
+    },
+    "input": {
+      "time_unit": "hours",
+      "trigger_every": "1000000"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "hours"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.account_timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "workato_recipe_function",
+        "name": "call_recipe",
+        "as": "80e427e2",
+        "title": null,
+        "description": "Call <span class=\"provider\">a999-LoggerSubProcess</span>",
+        "keyword": "action",
+        "dynamicPickListSelection": {
+          "flow_id": "a999-LoggerSubProcess"
+        },
+        "input": {
+          "flow_id": {
+            "zip_name": "a999_loggersubprocess.recipe.json",
+            "name": "a999-LoggerSubProcess",
+            "folder": ""
+          },
+          "parameters": {
+            "Logger": {
+              "msg": "Hello World",
+              "currentDtTm": "=now"
+            }
+          }
+        },
+        "extended_input_schema": [
+          {
+            "label": "Parameters",
+            "name": "parameters",
+            "properties": [
+              {
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "msg",
+                    "name": "msg",
+                    "type": "string",
+                    "optional": true
+                  },
+                  {
+                    "control_type": "date_time",
+                    "label": "currentDtTm",
+                    "render_input": "date_time_conversion",
+                    "parse_output": "date_time_conversion",
+                    "name": "currentDtTm",
+                    "type": "date_time",
+                    "optional": true
+                  }
+                ],
+                "label": "Logger",
+                "name": "Logger",
+                "type": "object",
+                "optional": false
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "visible_config_fields": [
+          "flow_id",
+          "parameters.Logger.msg",
+          "parameters.Logger.currentDtTm"
+        ],
+        "uuid": "7d9bcacf-0945-41a1-9285-944366f937cb"
+      }
+    ],
+    "uuid": "9574ee27-5e13-40bc-a060-4c5822735744",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "workato_recipe_function",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}

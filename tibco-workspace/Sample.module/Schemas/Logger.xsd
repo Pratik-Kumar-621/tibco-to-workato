@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Logger" xmlns:tns="http://www.example.org/Logger" elementFormDefault="qualified">
+
+  <xsd:element name="Logger">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="1" minOccurs="0" name="msg" type="xsd:string" />
+        <xsd:element maxOccurs="1" minOccurs="0" name="currentDtTm" type="xsd:dateTime"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

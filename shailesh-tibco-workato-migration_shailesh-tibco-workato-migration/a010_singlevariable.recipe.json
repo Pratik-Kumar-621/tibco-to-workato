@@ -1,0 +1,174 @@
+{
+  "name": "a010-SingleVariable",
+  "version": 1,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "0db5b80a",
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> on a <span class=\"provider\">custom schedule</span>",
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+      "time_unit": "Custom schedule"
+    },
+    "input": {
+      "time_unit": "custom_schedule",
+      "cron_expression": "1 * * * *"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "cron",
+        "enforce_template_mode": true,
+        "hint": "                        Cron expressions are written as: <b>[minute]  [hour]  [day of month]  [month]  [day of week]</b>.\n                        <a href=\"https://crontab.guru/\" target=\"_blank\">Learn more</a>\n",
+        "label": "Cron expression",
+        "name": "cron_expression",
+        "optional": false,
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.account_timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "workato_variable",
+        "name": "declare_variable",
+        "as": "2746cf06",
+        "title": "  Create variable name",
+        "description": "Create variable <span class=\"provider\">name</span>",
+        "keyword": "action",
+        "input": {
+          "variables": {
+            "schema": "[{\"name\":\"name\",\"type\":\"string\",\"optional\":true,\"label\":\"name\",\"details\":{\"real_name\":\"name\"},\"control_type\":\"text\"}]",
+            "data": {
+              "name": "First Last"
+            }
+          }
+        },
+        "extended_output_schema": [
+          {
+            "control_type": "text",
+            "label": "name",
+            "name": "name",
+            "optional": true,
+            "type": "string",
+            "details": {
+              "real_name": "name"
+            }
+          }
+        ],
+        "extended_input_schema": [
+          {
+            "add_field_label": "Add a variable",
+            "control_type": "form-schema-builder",
+            "empty_schema_title": "Add variables by giving them a name, type and default value",
+            "exclude_fields": [
+              "hint"
+            ],
+            "item_label": "variable",
+            "label": "Variables",
+            "mark_as_required": true,
+            "name": "variables",
+            "ngIf": "!input.name",
+            "optional": true,
+            "properties": [
+              {
+                "control_type": "text",
+                "label": "Schema",
+                "extends_schema": true,
+                "broadcast_change_event": true,
+                "type": "string",
+                "name": "schema"
+              },
+              {
+                "properties": [
+                  {
+                    "control_type": "text",
+                    "label": "name",
+                    "name": "name",
+                    "type": "string",
+                    "optional": true,
+                    "details": {
+                      "real_name": "name"
+                    },
+                    "hint": "Defaults to nil if not supplied.",
+                    "sticky": true
+                  }
+                ],
+                "label": "Data",
+                "type": "object",
+                "name": "data"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "visible_config_fields": [
+          "variables.data.name"
+        ],
+        "uuid": "6f49e64f-205c-46d1-a961-53ec2a34249a"
+      },
+      {
+        "number": 2,
+        "provider": "logger",
+        "name": "log_message",
+        "as": "d468151f",
+        "title": null,
+        "description": "Log <span class=\"provider\">message</span> to <span class=\"provider\">Job report</span>",
+        "keyword": "action",
+        "input": {
+          "message": "Hello #{_dp('{\"pill_type\":\"output\",\"provider\":\"workato_variable\",\"line\":\"2746cf06\",\"path\":[\"name\"]}')}"
+        },
+        "uuid": "5d81f432-9564-481d-a142-288ffb0c3f86"
+      }
+    ],
+    "comment": "Highest frequency configurable is custom cron schedule or default to 5 mins",
+    "uuid": "83a97552-a714-42c2-b536-080772dcb4b0",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "workato_variable",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "logger",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}

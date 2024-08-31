@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Payroll" xmlns:tns="http://www.example.org/Payroll" elementFormDefault="qualified">
+
+  <xsd:element name="Payroll">
+	<xsd:complexType>
+      <xsd:sequence>
+      	<xsd:element maxOccurs="1" minOccurs="0" name="id" type="xsd:integer" />
+        <xsd:element name="Name">
+        	<xsd:complexType>
+        		<xsd:sequence>
+        			<xsd:element maxOccurs="1" minOccurs="0" name="first" type="xsd:string" />
+        			<xsd:element maxOccurs="1" minOccurs="0" name="middle" type="xsd:string" />
+        			<xsd:element maxOccurs="1" minOccurs="0" name="last" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+        <xsd:element maxOccurs="1" minOccurs="0" name="DOJ" type="xsd:date" />
+        <xsd:element maxOccurs="1" minOccurs="0" name="grade" type="xsd:string" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

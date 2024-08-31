@@ -1,0 +1,228 @@
+{
+  "name": "a000-HelloWorld",
+  "version": 1,
+  "private": true,
+  "concurrency": 1,
+  "code": {
+    "number": 0,
+    "provider": "clock",
+    "name": "scheduled_event",
+    "as": "efd2d180",
+    "title": null,
+    "description": "<span class=\"provider\">Trigger</span> every 1000000 hours",
+    "keyword": "trigger",
+    "dynamicPickListSelection": {
+      "time_unit": "Hours",
+      "days_of_month": [
+        {
+          "label": "1",
+          "value": "1"
+        },
+        {
+          "label": "2",
+          "value": "2"
+        },
+        {
+          "label": "3",
+          "value": "3"
+        },
+        {
+          "label": "4",
+          "value": "4"
+        },
+        {
+          "label": "5",
+          "value": "5"
+        },
+        {
+          "label": "6",
+          "value": "6"
+        },
+        {
+          "label": "7",
+          "value": "7"
+        },
+        {
+          "label": "8",
+          "value": "8"
+        },
+        {
+          "label": "9",
+          "value": "9"
+        },
+        {
+          "label": "10",
+          "value": "10"
+        },
+        {
+          "label": "11",
+          "value": "11"
+        },
+        {
+          "label": "12",
+          "value": "12"
+        },
+        {
+          "label": "13",
+          "value": "13"
+        },
+        {
+          "label": "14",
+          "value": "14"
+        },
+        {
+          "label": "15",
+          "value": "15"
+        },
+        {
+          "label": "16",
+          "value": "16"
+        },
+        {
+          "label": "17",
+          "value": "17"
+        },
+        {
+          "label": "18",
+          "value": "18"
+        },
+        {
+          "label": "19",
+          "value": "19"
+        },
+        {
+          "label": "20",
+          "value": "20"
+        },
+        {
+          "label": "21",
+          "value": "21"
+        },
+        {
+          "label": "22",
+          "value": "22"
+        },
+        {
+          "label": "23",
+          "value": "23"
+        },
+        {
+          "label": "24",
+          "value": "24"
+        },
+        {
+          "label": "25",
+          "value": "25"
+        },
+        {
+          "label": "26",
+          "value": "26"
+        },
+        {
+          "label": "27",
+          "value": "27"
+        },
+        {
+          "label": "28",
+          "value": "28"
+        },
+        {
+          "label": "29",
+          "value": "29"
+        },
+        {
+          "label": "30",
+          "value": "30"
+        },
+        {
+          "label": "31",
+          "value": "31"
+        },
+        {
+          "label": "Last day",
+          "value": "last_day"
+        }
+      ]
+    },
+    "input": {
+      "time_unit": "hours",
+      "trigger_every": "1000000"
+    },
+    "extended_input_schema": [
+      {
+        "control_type": "integer",
+        "default": "5",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Define repeating schedule. Enter whole numbers only.\n                        This field can be set to a minimum of 5 minutes.",
+        "label": "Trigger every",
+        "name": "trigger_every",
+        "optional": false,
+        "suffix": {
+          "text": "hours"
+        },
+        "type": "string"
+      },
+      {
+        "control_type": "select",
+        "hint": "Select the timezone to use. Leave it blank to use <b>{{authUser.account_timezone}}</b>",
+        "label": "Timezone",
+        "name": "timezone",
+        "optional": true,
+        "pick_list": "timezone_id_global_pick_list",
+        "pick_list_connection_less": true,
+        "type": "string"
+      },
+      {
+        "control_type": "date_time",
+        "enforce_template_mode": true,
+        "extends_schema": true,
+        "hint": "Set date and time to start or leave blank to start immediately. <b>Once recipe has been run or tested, value cannot be changed.</b>",
+        "label": "Start after",
+        "name": "start_after",
+        "optional": true,
+        "parse_output": "date_time_conversion",
+        "since_field": true,
+        "type": "date_time",
+        "ignore_timezone": true,
+        "render_input": "date_time_conversion"
+      }
+    ],
+    "visible_config_fields": [
+      "time_unit",
+      "trigger_every"
+    ],
+    "block": [
+      {
+        "number": 1,
+        "provider": "logger",
+        "name": "log_message",
+        "as": "f33733f2",
+        "title": null,
+        "description": "Log <span class=\"provider\">message</span> to <span class=\"provider\">Job report</span>",
+        "keyword": "action",
+        "input": {
+          "message": "Hello World"
+        },
+        "uuid": "68c9a5c2-eb97-43ca-a28c-c09d467beac4"
+      }
+    ],
+    "comment": "Effectively run once",
+    "uuid": "d1ae2759-05ea-42f7-bc86-812af5f7bd76",
+    "unfinished": false
+  },
+  "config": [
+    {
+      "keyword": "application",
+      "provider": "clock",
+      "skip_validation": false,
+      "account_id": null
+    },
+    {
+      "keyword": "application",
+      "provider": "logger",
+      "skip_validation": false,
+      "account_id": null
+    }
+  ]
+}
