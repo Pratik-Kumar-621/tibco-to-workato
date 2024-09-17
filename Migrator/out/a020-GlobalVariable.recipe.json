@@ -1,0 +1,93 @@
+{
+    "name": "module",
+    "version": 1,
+    "private": true,
+    "concurrency": 1,
+    "code": {
+        "number": 0,
+        "provider": "clock",
+        "name": "scheduled_event",
+        "as": "0",
+        "keyword": "trigger",
+        "input": {
+            "time_unit": "minutes",
+            "trigger_every": "5"
+        },
+        "block": [
+            {
+                "number": 1,
+                "provider": "workato_variable",
+                "name": "declare_variable",
+                "as": "1",
+                "keyword": "action",
+                "input": {
+                    "variables": {
+                        "schema": "[{\"name\": \"name\", \"type\": \"string\", \"optional\": true, \"label\": \"name\", \"details\": {\"real_name\": \"name\"}, \"control_type\": \"text\"}]",
+                        "data": {
+                            "name": "First Last"
+                        }
+                    }
+                },
+                "visible_config_fields": [
+                    "variables.data.name"
+                ],
+                "uuid": "d6ea5c13-560b-46a7-88b5-821d77b0e227"
+            },
+            {
+                "number": 2,
+                "provider": "workato_variable",
+                "name": "declare_variable",
+                "as": "2",
+                "keyword": "action",
+                "input": {
+                    "variables": {
+                        "schema": "[{\"name\": \"complexVar\", \"type\": \"\", \"optional\": true, \"label\": \"complexVar\", \"details\": {\"real_name\": \"complexVar\"}, \"control_type\": \"text\"}]",
+                        "data": {
+                            "complexVar": ""
+                        }
+                    }
+                },
+                "visible_config_fields": [
+                    "variables.data.complexVar"
+                ],
+                "uuid": "6ff759af-e3a3-4c2d-b3d7-69354806ea02"
+            },
+            {
+                "number": 3,
+                "provider": "logger",
+                "name": "log_message",
+                "as": "3",
+                "keyword": "action",
+                "input": {
+                    "message": "concat(&quot;Hola &quot;, $name)"
+                },
+                "visible_config_fields": [],
+                "uuid": "4ecac125-4ea9-4a86-ad0b-ae2b4237b322"
+            }
+        ],
+        "uuid": "a4cc7c76-d880-4935-a939-e5fdcc716642",
+        "unfinished": false
+    },
+    "config": [
+        {
+            "keyword": "application",
+            "provider": "workato_variable",
+            "skip_validation": false
+        },
+        {
+            "keyword": "application",
+            "provider": "workato_variable",
+            "skip_validation": false
+        },
+        {
+            "keyword": "application",
+            "provider": "clock",
+            "skip_validation": false
+        },
+        {
+            "keyword": "application",
+            "provider": "logger",
+            "skip_validation": false
+        }
+    ]
+}

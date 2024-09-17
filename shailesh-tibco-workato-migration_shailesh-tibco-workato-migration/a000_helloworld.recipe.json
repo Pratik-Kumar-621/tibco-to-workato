@@ -188,10 +188,7 @@
         "render_input": "date_time_conversion"
       }
     ],
-    "visible_config_fields": [
-      "time_unit",
-      "trigger_every"
-    ],
+    "visible_config_fields": ["time_unit", "trigger_every"],
     "block": [
       {
         "number": 1,

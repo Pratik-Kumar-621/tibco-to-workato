@@ -1,0 +1,45 @@
+{
+    "name": "module",
+    "version": 1,
+    "private": true,
+    "concurrency": 1,
+    "code": {
+        "number": 0,
+        "provider": "clock",
+        "name": "scheduled_event",
+        "as": "0",
+        "keyword": "trigger",
+        "input": {
+            "time_unit": "minutes",
+            "trigger_every": "5"
+        },
+        "block": [
+            {
+                "number": 1,
+                "provider": "logger",
+                "name": "log_message",
+                "as": "1",
+                "keyword": "action",
+                "input": {
+                    "message": "Hello World"
+                },
+                "visible_config_fields": [],
+                "uuid": "4937615d-0235-446f-93b3-b1389707d2c1"
+            }
+        ],
+        "uuid": "5df32e8b-e876-44ed-8a6e-81ce89a0ef1e",
+        "unfinished": false
+    },
+    "config": [
+        {
+            "keyword": "application",
+            "provider": "clock",
+            "skip_validation": false
+        },
+        {
+            "keyword": "application",
+            "provider": "logger",
+            "skip_validation": false
+        }
+    ]
+}

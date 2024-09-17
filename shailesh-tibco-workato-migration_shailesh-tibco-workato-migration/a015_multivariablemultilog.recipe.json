@@ -106,10 +106,8 @@
               {
                 "control_type": "checkbox",
                 "label": "flag",
-                "render_input": {
-                },
-                "parse_output": {
-                },
+                "render_input": {},
+                "parse_output": {},
                 "toggle_hint": "Select from option list",
                 "toggle_field": {
                   "label": "flag",
@@ -138,9 +136,7 @@
             "add_field_label": "Add a variable",
             "control_type": "form-schema-builder",
             "empty_schema_title": "Add variables by giving them a name, type and default value",
-            "exclude_fields": [
-              "hint"
-            ],
+            "exclude_fields": ["hint"],
             "item_label": "variable",
             "label": "Variables",
             "mark_as_required": true,
@@ -194,10 +190,8 @@
                       {
                         "control_type": "checkbox",
                         "label": "flag",
-                        "render_input": {
-                        },
-                        "parse_output": {
-                        },
+                        "render_input": {},
+                        "parse_output": {},
                         "toggle_hint": "Select from option list",
                         "toggle_field": {
                           "label": "flag",

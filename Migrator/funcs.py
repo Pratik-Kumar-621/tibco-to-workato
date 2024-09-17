@@ -44,28 +44,42 @@ def get_log_expr(step, wk_dict, num):
 
 
 def get_var_conf(tib_var, wk_dict, num):
-    val = tib_var.xpath('./bpws:from/bpws:literal', namespaces=common.ns)[0].text.removesuffix('"').removeprefix('"')
-    print(tib_var.get('name'), val)
-    workato_var_schema_dict = json.loads(common.workato_var_schema_json)
-    workato_var_schema_dict['name'] = tib_var.get('name')
-    workato_var_schema_dict['label'] = tib_var.get('name')
-    workato_var_schema_dict['type'] = tib_var.get('type').split(':')[1]
-    workato_var_schema_dict['details']['real_name'] = tib_var.get('name')
-    workato_vars_json = json.loads(common.workato_vars_json)
-    workato_vars_json['variables']['schema'] = '[' + json.dumps(workato_var_schema_dict) + ']'
-    workato_vars_json['variables']['data'][tib_var.get('name')] = val
-    wk_blk_dict = json.loads(common.workato_blk_json)
-    wk_blk_dict['number'] = num
-    wk_blk_dict['provider'] = 'workato_variable'
-    wk_blk_dict['name'] = 'declare_variable'
-    wk_blk_dict['as'] = str(num)
-    wk_blk_dict['input'] = workato_vars_json
-    wk_blk_dict['visible_config_fields'].append('variables.data.'+tib_var.get('name'))
-    wk_blk_dict['uuid'] = str(uuid.uuid4())
-    wk_dict['code']['block'].append(wk_blk_dict)
-    wk_conf_dict = json.loads(common.workato_conf_json)
-    wk_conf_dict['provider'] = 'workato_variable'
-    wk_dict['config'].append(wk_conf_dict)
+    try:
+        literal_elements = tib_var.xpath('./bpws:from/bpws:literal', namespaces=common.ns)
+        if literal_elements and literal_elements[0].text:
+            val = literal_elements[0].text.strip('"')
+        else:
+            val = ""
+        
+        print(f"Variable: {tib_var.get('name')}, Value: {val}")
+        
+        workato_var_schema_dict = json.loads(common.workato_var_schema_json)
+        workato_var_schema_dict['name'] = tib_var.get('name')
+        workato_var_schema_dict['label'] = tib_var.get('name')
+        var_type = tib_var.get('type', '')
+        workato_var_schema_dict['type'] = var_type.split(':')[-1] if ':' in var_type else var_type
+        workato_var_schema_dict['details']['real_name'] = tib_var.get('name')
+        
+        workato_vars_json = json.loads(common.workato_vars_json)
+        workato_vars_json['variables']['schema'] = '[' + json.dumps(workato_var_schema_dict) + ']'
+        workato_vars_json['variables']['data'][tib_var.get('name')] = val
+        
+        wk_blk_dict = json.loads(common.workato_blk_json)
+        wk_blk_dict['number'] = num
+        wk_blk_dict['provider'] = 'workato_variable'
+        wk_blk_dict['name'] = 'declare_variable'
+        wk_blk_dict['as'] = str(num)
+        wk_blk_dict['input'] = workato_vars_json
+        wk_blk_dict['visible_config_fields'].append('variables.data.' + tib_var.get('name'))
+        wk_blk_dict['uuid'] = str(uuid.uuid4())
+        
+        wk_dict['code']['block'].append(wk_blk_dict)
+        wk_conf_dict = json.loads(common.workato_conf_json)
+        wk_conf_dict['provider'] = 'workato_variable'
+        wk_dict['config'].append(wk_conf_dict)
+    except Exception as e:
+        print(f"Error processing variable {tib_var.get('name')}: {str(e)}")
+        # You might want to log this error or handle it in some way
 
 
 def get_data_pill(pill_type, provider, expr):

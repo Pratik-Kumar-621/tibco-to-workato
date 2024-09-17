@@ -68,7 +68,7 @@ workato_vars_json = '''
 {
     "variables": {
         "schema": "",
-        "data": {}
+        "data": {} 
     }
 }
 '''
